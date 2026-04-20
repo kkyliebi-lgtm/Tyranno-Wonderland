@@ -1,0 +1,7 @@
+# Large media files - store locally but don't track in git
+assets/videos/references/human/human-01.mp4
+assets/glyphs/tyranno blurred/tyranno blurred-ALL.svg
+
+# OS files
+.DS_Store
+Thumbs.db
