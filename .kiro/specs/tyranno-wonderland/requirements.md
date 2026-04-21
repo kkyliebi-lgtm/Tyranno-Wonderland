@@ -24,10 +24,21 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 - **Fallback_Control**: Mouse and keyboard alternative to Gesture_System interaction
 - **Asset_Loader**: System responsible for loading 3D models, fonts, and media files
 - **Navigation_System**: Interface for moving between Chapters
+- **Mini_Map**: Small real-time map in lower right corner showing User position within current Chapter
+- **Panoramic_Map**: Full-screen map view showing all Chapters accessible from Mini_Map
 - **Fog_Sequence**: Three-phase animated entry experience
 - **Carousel**: Horizontally scrollable chapter overview interface
 - **Frosted_Window**: Semi-transparent UI panel with blur effect
 - **Balloon_Animation**: Upward-floating visual effect for sent translations
+- **Camera_Feed**: Live video stream from User's camera for gesture recognition
+- **Gesture_Skeleton**: Visual overlay showing detected hand joints and connections
+- **Card_Picking_Mode**: Focused interaction state where User selects a specific Card
+- **Guided_Tutorial**: Interactive instruction sequence teaching gesture controls
+- **Dynamic_Background**: Chapter-specific animated background enhancing atmosphere
+- **Easing_Curve**: Animation timing function cubic-bezier(0.77, 0, 0.175, 1)
+- **GPU_Acceleration**: Hardware-accelerated rendering for particle effects
+- **Anatomical_Kit**: Set of T. Rex body part Glyphs (NOSE, EYE_TEEN, EYE_ADULT, FEET, CLAW)
+- **Graphical_Symbol**: Set of communication Glyphs (TOWARD_LEFT, HUMAN, DINO, TOWARD_RIGHT, ROAR, HOME, FOOD, WATER)
 
 ## Requirements
 
@@ -43,9 +54,9 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 4. THE Website SHALL render the entry experience with deep space black background color #050508
 5. THE Website SHALL apply bioluminescent cyan accent color #00d4ff to interactive elements in the entry experience
 
-### Requirement 2: Chapter Navigation System
+### Requirement 2: Chapter Navigation System with Mini-Map
 
-**User Story:** As a User, I want to navigate between different chapters, so that I can explore the Tyranno Wonderland content in a structured way.
+**User Story:** As a User, I want to navigate between different chapters with visual orientation, so that I can explore the Tyranno Wonderland content in a structured way and always know where I am.
 
 #### Acceptance Criteria
 
@@ -55,10 +66,15 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 4. THE Navigation_System SHALL provide forward and backward navigation controls within each Chapter
 5. THE Navigation_System SHALL maintain User progress state across Chapter transitions
 6. THE Website SHALL preserve scroll position when returning to the Carousel
+7. WHILE a User is viewing any Chapter, THE Navigation_System SHALL display a Mini_Map in the lower right corner of the screen
+8. THE Mini_Map SHALL show the User's current position within the active Chapter in real-time
+9. WHEN a User clicks the Mini_Map, THE Navigation_System SHALL transition to a Panoramic_Map view showing all Chapters within 0.5 seconds
+10. WHEN a User selects a Chapter from the Panoramic_Map, THE Navigation_System SHALL transition to that Chapter within 1 second
+11. THE Mini_Map SHALL remain visible and accessible throughout the User's session
 
-### Requirement 3: Wonderland Tour Ecosystem Visualization
+### Requirement 3: Wonderland Tour Ecosystem Visualization with Dynamic Backgrounds
 
-**User Story:** As a User, I want to explore the 2050 ecosystem, so that I can understand the symbiotic relationships in Tyranno Wonderland.
+**User Story:** As a User, I want to explore the 2050 ecosystem with atmospheric backgrounds, so that I can understand the symbiotic relationships in Tyranno Wonderland and feel immersed in each environment.
 
 #### Acceptance Criteria
 
@@ -68,6 +84,9 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 4. THE Particle_System SHALL animate continuously to convey living ecosystem dynamics
 5. THE Website SHALL render the ecosystem with purple-violet atmospheric haze effects
 6. WHEN a User interacts with ecosystem elements, THE Website SHALL display information about symbiotic relationships
+7. WHEN a User enters any Chapter, THE Website SHALL display a Dynamic_Background specific to that Chapter
+8. THE Dynamic_Background SHALL enhance the atmosphere and encourage User participation
+9. THE Dynamic_Background SHALL animate subtly without distracting from primary content
 
 ### Requirement 4: Interactive Skeletal Viewer
 
@@ -83,69 +102,112 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 6. THE Skeletal_Viewer SHALL render at a minimum of 30 frames per second on devices meeting minimum specifications
 7. THE Website SHALL load skeletal 3D models from the assets/3d models directory
 
-### Requirement 5: Gesture Recognition System
+### Requirement 5: Gesture Recognition System with Camera Feed and Tutorial
 
-**User Story:** As a User, I want to interact using hand gestures, so that I can experience intuitive embodied interaction with the Tyranno system.
+**User Story:** As a User, I want to interact using hand gestures with visual feedback and guidance, so that I can experience intuitive embodied interaction with the Tyranno system and learn the gesture controls.
 
 #### Acceptance Criteria
 
 1. WHERE Gesture_System is enabled, WHEN a User enters Chapter .04, .05, or .06, THE Website SHALL initialize MediaPipe Hands
-2. THE Gesture_System SHALL detect open palm gestures within 200 milliseconds
-3. THE Gesture_System SHALL detect fist gestures within 200 milliseconds
-4. THE Gesture_System SHALL detect pinch-out gestures within 200 milliseconds
-5. THE Gesture_System SHALL detect pinch-in gestures within 200 milliseconds
-6. WHERE Gesture_System initialization fails, THE Website SHALL automatically enable Fallback_Control
-7. THE Website SHALL display visual feedback indicating which gesture was detected within 100 milliseconds
-8. THE Website SHALL provide a toggle to switch between Gesture_System and Fallback_Control
+2. WHEN the Gesture_System initializes, THE Website SHALL request camera permission from the User
+3. WHERE camera permission is granted, THE Website SHALL display a Camera_Feed at 320×240 resolution in the upper right corner of the screen
+4. THE Camera_Feed SHALL have 80% opacity
+5. THE Gesture_System SHALL overlay a Gesture_Skeleton showing detected hand joints and connecting lines on the Camera_Feed
+6. THE Camera_Feed SHALL update synchronously with the main screen at 60 frames per second
+7. THE Gesture_System SHALL detect open palm gestures within 200 milliseconds
+8. THE Gesture_System SHALL detect fist gestures within 200 milliseconds
+9. THE Gesture_System SHALL detect pinch-out gestures within 200 milliseconds
+10. THE Gesture_System SHALL detect pinch-in gestures within 200 milliseconds
+11. THE Gesture_System SHALL detect single-finger pointing gestures within 200 milliseconds
+12. THE Gesture_System SHALL detect two-finger gestures within 200 milliseconds
+13. THE Gesture_System SHALL apply debouncing to all gesture detection with a minimum interval of 50 milliseconds
+14. WHERE Gesture_System initialization fails, THE Website SHALL automatically enable Fallback_Control
+15. WHERE camera permission is denied, THE Website SHALL automatically enable Fallback_Control and display a fallback UI
+16. THE Website SHALL display visual feedback indicating which gesture was detected within 100 milliseconds
+17. THE Website SHALL provide a toggle to switch between Gesture_System and Fallback_Control
+18. WHEN a User first activates the Gesture_System, THE Website SHALL display a Guided_Tutorial demonstrating all available gestures
+19. THE Guided_Tutorial SHALL allow Users to practice each gesture before proceeding
+20. THE Website SHALL provide an option to replay the Guided_Tutorial at any time
 
-### Requirement 6: Alphabet Salon Card Reveal
+### Requirement 6: Alphabet Salon Advanced Gesture Interaction
 
-**User Story:** As a User, I want to reveal Tyranno V1 characters through interaction, so that I can discover the design principles behind each Glyph.
+**User Story:** As a User, I want to interact with Tyranno V1 cards using detailed gesture controls, so that I can discover the design principles behind each Glyph through an immersive and intuitive interface.
 
 #### Acceptance Criteria
 
-1. WHEN a User enters Chapter .04, THE Website SHALL display a grid of face-down Cards
-2. WHERE Gesture_System is active, WHEN a User performs an open palm gesture over a Card, THE Website SHALL flip that Card to reveal the Tyranno_V1 Glyph
-3. WHERE Fallback_Control is active, WHEN a User clicks a Card, THE Website SHALL flip that Card to reveal the Tyranno_V1 Glyph
-4. WHEN a Card is revealed, THE Website SHALL display the source of inspiration for that Glyph
-5. WHEN a Card is revealed, THE Website SHALL display design principles for that Glyph
-6. THE Website SHALL render Card textures using GLSL shaders
-7. THE Website SHALL load Glyph SVG assets from the assets/glyphs directory
+1. WHEN a User enters Chapter .04, THE Website SHALL display Cards in a scattered arrangement throughout the space
+2. WHERE Gesture_System is active, WHEN a User clenches a fist and holds for 0.5 seconds, THE Website SHALL animate all Cards to converge to the center within 1 second
+3. WHEN all Cards are stacked at center, THE Website SHALL display them in a stacked arrangement
+4. WHERE Gesture_System is active, WHEN a User opens fingers from a fist, THE Website SHALL scatter all Cards throughout the space within 1 second
+5. WHILE Cards are scattered, WHEN a User moves their hand in the XY plane, THE Website SHALL move Cards in real-time following the hand's movement vector
+6. THE Website SHALL preserve particle trajectories and afterimages during Card movement
+7. WHERE Gesture_System is active, WHEN a User points with a single finger (index) at a Card, THE Website SHALL enter Card_Picking_Mode with a zoom-in effect
+8. WHILE in Card_Picking_Mode, THE Website SHALL magnify the area pointed at by the User
+9. WHEN a User maintains single-finger pointing for 1.2 seconds, THE Website SHALL move the pointed Card to the center and magnify it
+10. WHEN a Card is magnified at center, THE Website SHALL apply a particle floating effect with frequency 2Hz and amplitude 6 pixels
+11. WHEN a Card is magnified at center, THE Website SHALL shrink and blur remaining Cards into the background
+12. WHERE Gesture_System is active, WHEN a User swipes a single finger left or right more than 10 degrees, THE Website SHALL flip the Card with an animation lasting 0.8 seconds
+13. WHEN a Card flips, THE Website SHALL reveal the Card front with mirrored reflections and slight noise texture
+14. WHERE Gesture_System is active, WHEN a User swipes a single finger up or down more than 10 degrees, THE Website SHALL play a card collection animation lasting 1.2 seconds
+15. DURING card collection animation, THE Website SHALL rotate the Card downward and dissolve it into particle light spots
+16. WHERE Gesture_System is active, WHEN a User spreads five fingers, THE Website SHALL zoom out the screen and return to normal view with a transition lasting 1.5 seconds
+17. WHERE Gesture_System is active, WHEN a User flicks two fingers (index and middle) from bottom to top more than 10 degrees, THE Website SHALL expand the Achievement_Zone with a zoom-in effect
+18. WHEN the Achievement_Zone expands, THE Website SHALL slightly blur the main background
+19. WHERE Gesture_System is active, WHEN a User swipes two fingers (index and middle) from top to bottom more than 10 degrees, THE Website SHALL retract and close the Achievement_Zone
+20. WHEN the Achievement_Zone closes, THE Website SHALL clear the blur from the main background
+21. WHERE Gesture_System is active, WHEN a User opens or closes their hand (pinch-to-zoom gesture), THE Website SHALL adjust screen display size proportionally
+22. WHEN a User's hand is more open, THE Website SHALL zoom out the display
+23. WHEN a User's hand is more closed, THE Website SHALL zoom in the display
+24. WHERE Fallback_Control is active, WHEN a User clicks a Card, THE Website SHALL flip that Card to reveal the Tyranno_V1 Glyph
+25. WHEN a Card is revealed, THE Website SHALL display the source of inspiration for that Glyph
+26. WHEN a Card is revealed, THE Website SHALL display design principles for that Glyph
+27. THE Website SHALL render Card textures using GLSL shaders
+28. THE Website SHALL render flowing texture on Card backs using GLSL shaders
+29. THE Website SHALL load Glyph SVG assets from the assets/glyphs directory
 
-### Requirement 7: 3D Maze Navigation and Treasure Hunt
+### Requirement 7: 3D Maze Navigation with Initial Animation
 
-**User Story:** As a User, I want to navigate a 3D maze and collect cards, so that I can actively participate in the evolution of the Tyranno Language.
+**User Story:** As a User, I want to navigate a 3D maze with an engaging entry animation and collect cards, so that I can actively participate in the evolution of the Tyranno Language.
 
 #### Acceptance Criteria
 
 1. WHEN a User enters Chapter .05, THE Website SHALL render a 3D Maze constructed from the Tyranno logo geometry
-2. THE Maze SHALL contain collectible Cards positioned throughout the environment
-3. WHERE Gesture_System is active, THE Maze SHALL respond to gesture-based navigation controls
-4. WHERE Fallback_Control is active, THE Maze SHALL respond to keyboard arrow keys and mouse controls
-5. WHEN a User collects a Card, THE Website SHALL add that Card to the Achievement_Zone
-6. WHEN a User collects a Card, THE Website SHALL transform that Card from Tyranno_V1 to Tyranno_V2 visual style
-7. THE Maze SHALL render at a minimum of 30 frames per second on devices meeting minimum specifications
-8. THE Website SHALL persist collected Cards in browser storage across sessions
-9. THE Achievement_Zone SHALL display total Cards collected and total Cards available
+2. WHEN Chapter .05 loads, THE Website SHALL display an initial animation where all Cards float and rotate in a ring in the air
+3. DURING the initial animation, THE Website SHALL display only Card backs with noisy texture and microparticle halo effects
+4. WHEN the initial animation completes, THE Website SHALL scatter Cards from the stacked center state to various Maze positions within 1 second
+5. WHEN Cards finish scattering, THE Website SHALL enable exploration controls
+6. THE Maze SHALL contain collectible Cards positioned throughout the environment
+7. WHERE Gesture_System is active, THE Maze SHALL respond to gesture-based navigation controls
+8. WHERE Fallback_Control is active, THE Maze SHALL respond to keyboard arrow keys and mouse controls
+9. WHEN a User collects a Card, THE Website SHALL add that Card to the Achievement_Zone
+10. WHEN a User collects a Card, THE Website SHALL transform that Card from Tyranno_V1 to Tyranno_V2 visual style
+11. THE Maze SHALL render at a minimum of 30 frames per second on devices meeting minimum specifications
+12. THE Website SHALL persist collected Cards in browser storage across sessions
+13. THE Achievement_Zone SHALL display total Cards collected and total Cards available
 
-### Requirement 8: Symbiosis Ring Orbit Display
+### Requirement 8: Symbiosis Ring Horizontal Scroll Gallery
 
-**User Story:** As a User, I want to view all final Tyranno characters in an orbital display, so that I can appreciate the complete language system.
+**User Story:** As a User, I want to view all final Tyranno characters in a horizontal scrolling gallery, so that I can appreciate the complete language system and explore collected achievements.
 
 #### Acceptance Criteria
 
-1. WHEN a User enters Chapter .06, THE Website SHALL display all Tyranno_V2 Glyphs in an Orbit_Display
-2. WHERE Gesture_System is active, WHEN a User shows an open palm, THE Orbit_Display SHALL rotate continuously
-3. WHERE Gesture_System is active, WHEN a User shows a fist, THE Orbit_Display SHALL freeze rotation
-4. WHERE Gesture_System is active, WHEN a User performs a pinch-out gesture on a Card, THE Website SHALL enlarge that Card to full-screen view
-5. WHERE Gesture_System is active, WHEN a User performs a pinch-in gesture, THE Website SHALL return the enlarged Card to the Orbit_Display
-6. WHERE Gesture_System is active, WHEN a User shows an open palm after viewing a Card, THE Orbit_Display SHALL resume rotation
-7. WHERE Fallback_Control is active, THE Website SHALL provide click-and-drag rotation and click-to-enlarge functionality
-8. THE Orbit_Display SHALL render Cards with amber-fossil gold color #d4a84b
+1. WHEN a User enters Chapter .06, THE Website SHALL display all Tyranno_V2 Glyphs in a horizontal scroll stream
+2. THE horizontal scroll stream SHALL allow Users to scroll left and right through all collected Cards
+3. WHERE Gesture_System is active, WHEN a User shows an open palm, THE horizontal scroll stream SHALL scroll continuously in the direction of hand movement
+4. WHERE Gesture_System is active, WHEN a User shows a fist, THE horizontal scroll stream SHALL freeze scrolling
+5. WHERE Gesture_System is active, WHEN a User performs a pinch-out gesture on a Card, THE Website SHALL expand that Card into a booth-style deeper exploration panel
+6. WHEN a Card expands into a booth panel, THE Website SHALL display detailed information about that Glyph
+7. WHERE Gesture_System is active, WHEN a User performs a pinch-in gesture, THE Website SHALL close the booth panel and return to the horizontal scroll stream
+8. WHERE Gesture_System is active, WHEN a User flicks two fingers (index and middle) from bottom to top more than 10 degrees, THE Website SHALL expand the Achievement_Zone display
+9. WHEN the Achievement_Zone expands, THE Website SHALL show all collected Cards with collection statistics
+10. WHERE Gesture_System is active, WHEN a User swipes two fingers (index and middle) from top to bottom more than 10 degrees, THE Website SHALL close the Achievement_Zone display
+11. WHERE Fallback_Control is active, THE Website SHALL provide click-and-drag scrolling and click-to-expand functionality
+12. THE Website SHALL render Cards with amber-fossil gold color #d4a84b
+13. THE horizontal scroll stream SHALL maintain consistent presentation style with the reference aesthetic
 
-### Requirement 9: Translation Engine
+### Requirement 9: Translation Engine with Complete Glyph Support
 
-**User Story:** As a User, I want to translate between human language and Tyranno Language, so that I can immediately use the communication system.
+**User Story:** As a User, I want to translate between human language and Tyranno Language including all alphabet characters and symbols, so that I can immediately use the complete communication system.
 
 #### Acceptance Criteria
 
@@ -155,8 +217,12 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 4. WHEN a User enters Tyranno_Language Glyphs in the Tyranno Frosted_Window, THE Translation_Engine SHALL convert them to human text within 500 milliseconds
 5. THE Translation_Engine SHALL provide a swap button to exchange the positions of the two Frosted_Windows
 6. WHEN a User clicks the Send button, THE Website SHALL display a Balloon_Animation carrying the translation result upward to the main screen
-7. THE Translation_Engine SHALL support bidirectional translation for all Tyranno_V2 Glyphs
-8. THE Frosted_Windows SHALL have semi-transparent backgrounds with blur effects
+7. THE Translation_Engine SHALL support bidirectional translation for all 26 alphabet Glyphs (A through Z)
+8. THE Translation_Engine SHALL support bidirectional translation for all Anatomical_Kit Glyphs (NOSE, EYE_TEEN, EYE_ADULT, FEET, CLAW)
+9. THE Translation_Engine SHALL support bidirectional translation for all Graphical_Symbol Glyphs (TOWARD_LEFT, HUMAN, DINO, TOWARD_RIGHT, ROAR, HOME, FOOD, WATER)
+10. THE Translation_Engine SHALL map alphabet characters to their defined meanings from the Tyranno language specification
+11. THE Frosted_Windows SHALL have semi-transparent backgrounds with blur effects
+12. THE Translation_Engine SHALL display Glyph meanings when a User hovers over or selects a Tyranno character
 
 ### Requirement 10: Asset Loading and Optimization
 
@@ -217,20 +283,23 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 7. THE Website SHALL persist User audio preferences across sessions
 8. THE Website SHALL respect browser autoplay policies and request User permission if required
 
-### Requirement 14: Performance Optimization
+### Requirement 14: Performance Optimization with GPU Acceleration
 
-**User Story:** As a User, I want smooth performance, so that I can interact with the website without lag or stuttering.
+**User Story:** As a User, I want smooth performance with hardware-accelerated effects, so that I can interact with the website without lag or stuttering.
 
 #### Acceptance Criteria
 
 1. THE Website SHALL maintain a minimum frame rate of 30 frames per second for 3D rendered content
 2. THE Website SHALL maintain a minimum frame rate of 60 frames per second for 2D UI animations
-3. WHEN rendering the Particle_System, THE Website SHALL limit particle count to maintain target frame rate
-4. THE Website SHALL use level-of-detail techniques to reduce polygon count for distant 3D objects
-5. THE Website SHALL implement frustum culling to avoid rendering objects outside the camera view
-6. THE Website SHALL use requestAnimationFrame for all animation loops
-7. THE Website SHALL debounce gesture recognition processing to occur at most every 50 milliseconds
-8. THE Website SHALL dispose of unused 3D resources when transitioning between Chapters
+3. WHEN rendering the Particle_System, THE Website SHALL use GPU_Acceleration to avoid affecting the main thread
+4. THE Website SHALL limit particle count to maintain target frame rate
+5. THE Website SHALL use level-of-detail techniques to reduce polygon count for distant 3D objects
+6. THE Website SHALL implement frustum culling to avoid rendering objects outside the camera view
+7. THE Website SHALL use requestAnimationFrame for all animation loops
+8. THE Website SHALL debounce gesture recognition processing to occur at most every 50 milliseconds
+9. THE Website SHALL dispose of unused 3D resources when transitioning between Chapters
+10. THE Website SHALL render all particle effects using GPU_Acceleration
+11. THE Camera_Feed SHALL update synchronously with the main screen at 60 frames per second without performance degradation
 
 ### Requirement 15: Cross-Browser Compatibility
 
@@ -260,19 +329,24 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 6. THE Website SHALL provide a reset button to clear all saved progress
 7. IF local storage is unavailable, THEN THE Website SHALL maintain state only for the current session
 
-### Requirement 17: Visual Effects and Shaders
+### Requirement 17: Visual Effects and Shaders with Standardized Animation
 
-**User Story:** As a User, I want visually striking effects, so that the Tyranno Wonderland experience feels futuristic and immersive.
+**User Story:** As a User, I want visually striking effects with smooth animations, so that the Tyranno Wonderland experience feels futuristic and immersive.
 
 #### Acceptance Criteria
 
 1. THE Website SHALL implement Card back textures using GLSL shaders
-2. THE Website SHALL implement Particle_System effects using GLSL shaders
-3. THE Website SHALL apply post-processing effects to 3D scenes including bloom and color grading
-4. THE Website SHALL render Glyphs with amber-fossil gold color #d4a84b and appropriate glow effects
-5. THE Website SHALL apply purple-violet atmospheric haze to the Wonderland Tour Chapter
-6. THE Website SHALL implement smooth transitions between Chapters using fade or dissolve effects lasting 0.5 to 1 second
-7. WHERE device capabilities are limited, THE Website SHALL reduce shader complexity to maintain performance
+2. THE Website SHALL implement flowing texture on Card backs using GLSL shaders
+3. THE Website SHALL implement Particle_System effects using GLSL shaders with GPU_Acceleration
+4. THE Website SHALL apply post-processing effects to 3D scenes including bloom and color grading
+5. THE Website SHALL render Glyphs with amber-fossil gold color #d4a84b and appropriate glow effects
+6. THE Website SHALL apply purple-violet atmospheric haze to the Wonderland Tour Chapter
+7. THE Website SHALL implement smooth transitions between Chapters using fade or dissolve effects lasting 0.5 to 1 second
+8. WHERE device capabilities are limited, THE Website SHALL reduce shader complexity to maintain performance
+9. THE Website SHALL use the Easing_Curve cubic-bezier(0.77, 0, 0.175, 1) for all animations
+10. THE Website SHALL render particle trajectories and afterimages during Card movement in Chapter .04
+11. THE Website SHALL render mirrored reflections and slight noise texture on Card fronts when flipped
+12. THE Website SHALL render microparticle halo effects on Card backs during the Maze initial animation
 
 ### Requirement 18: Font System Integration
 
@@ -318,3 +392,21 @@ TYRANNO WONDERLAND is an interactive web experience that presents a speculative 
 8. THE build system SHALL minify JavaScript and CSS for production builds
 9. THE build system SHALL generate a service worker for offline capability
 10. THE build system SHALL validate that all required assets exist before completing the build
+
+### Requirement 21: Modular Architecture and Code Quality
+
+**User Story:** As a developer, I want a well-structured codebase following best practices, so that the system is maintainable, testable, and scalable.
+
+#### Acceptance Criteria
+
+1. THE codebase SHALL separate concerns into distinct layers: rendering layer, gesture recognition layer, state machine, and visual asset configuration
+2. THE gesture recognition logic SHALL be encapsulated in a dedicated module following the single responsibility principle
+3. THE Gesture_System SHALL implement a state machine to manage gesture states and transitions
+4. THE state machine SHALL handle all gesture state logic independently from rendering concerns
+5. THE codebase SHALL adhere to KISS (Keep It Simple, Stupid) principles avoiding unnecessary complexity
+6. THE codebase SHALL adhere to SOLID principles for object-oriented design
+7. THE rendering layer SHALL be independent from the gesture recognition layer
+8. THE visual asset configuration SHALL be externalized from component logic
+9. THE codebase SHALL use dependency injection for testability
+10. THE codebase SHALL include unit tests for gesture state machine logic
+11. THE codebase SHALL include integration tests for gesture-to-rendering workflows
