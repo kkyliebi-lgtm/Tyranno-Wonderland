@@ -1,8 +1,9 @@
 # TYRANNO WONDERLAND
 
-> *"A language born from bone."*
+> *"Lost but not gone forever."*
 
-**TYRANNO WONDERLAND** is a speculative interactive web experience designed by **Yingqi Bi**, proposing a visual language system for communication between humans and Tyrannosaurus Rex.
+Welcome to **Tyranno Wonderland**. You are now wandering through a virtual space situated at a specific point in the future universe. This is a co-existing haven built upon a creative design project by visual designer **Yingqi Bi**, where you can use a brand-new speculative language system to communicate seamlessly with Tyrannosaurus rex. This is a wonderland not only for you but for all species.
+
 
 ---
 
@@ -22,12 +23,12 @@ The website consists of six chapters:
 
 | Chapter | Name | Description |
 |---------|------|-------------|
-| `.01` | **WONDERLAND** | A 2050 scenario showcasing the symbiotic ecosystem where humans, animals, plants, and T. Rex coexist |
-| `.02` | **SKELETON FIELD** | Inspiration gathering — including a large-scale 3D interactive T. Rex skeletal system |
-| `.03` | **TYRANNO ALPHABET** | First-generation Tyranno font, revealed through gesture-based interaction (MediaPipe Hands) |
+| `.01` | **Wonderland Tour** | A 2050 scenario showcasing the symbiotic ecosystem where humans, animals, plants, and T. Rex coexist |
+| `.02` | **Deconstruction of Tyranno** | Inspiration gathering — including a large-scale 3D interactive T. Rex skeletal system |
+| `.03` | **ALPHABET Salone** | First-generation Tyranno font, revealed through gesture-based interaction (MediaPipe Hands) |
 | `.04` | **THE MAZE** | Tyranno 2.0 — a 3D maze treasure hunt built from the Tyranno logo, with collectible character cards |
-| `.05` | **MEMORY FIELD** | Video, audio, and text documentation related to the project |
-| `.06` | **TRANSLATION ENGINE** | A human ↔ Tyranno decryption/translation interface |
+| `.05` | **Symbiosis Circle** | Video, audio, and text documentation related to the project |
+| `.06` | **Master the skills** | A human ↔ Tyranno decryption/translation interface |
 
 ---
 
