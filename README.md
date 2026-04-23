@@ -36,7 +36,7 @@ The website consists of six chapters:
 
 - **React** — UI framework
 - **Three.js / WebGL** — 3D skeletal viewer, maze, particle systems
-- **MediaPipe Hands** — gesture recognition interaction (Ch. `.03` and `.04`)
+- **MediaPipe Hands** — gesture recognition interaction (Ch. `.03` and `.04` and `.05`)
 - **Web Audio API** — ambient sound player
 - **GLSL Shaders** — card back texture, particle effects
 
