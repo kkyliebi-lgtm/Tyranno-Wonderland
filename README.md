@@ -25,8 +25,8 @@ The website consists of six chapters:
 |---------|------|-------------|
 | `.01` | **Wonderland Tour** | A 2050 scenario showcasing the symbiotic ecosystem where humans, animals, plants, and T. Rex coexist |
 | `.02` | **Deconstruction of Tyranno** | Inspiration gathering — including a large-scale 3D interactive T. Rex skeletal system |
-| `.03` | **ALPHABET Salone** | First-generation Tyranno font, revealed through gesture-based interaction (MediaPipe Hands) |
-| `.04` | **THE MAZE** | Tyranno 2.0 — a 3D maze treasure hunt built from the Tyranno logo, with collectible character cards |
+| `.03` | **Alphabet Salone** | First-generation Tyranno font, revealed through gesture-based interaction (MediaPipe Hands) |
+| `.04` | **The Maze** | Tyranno 2.0 — a 3D maze treasure hunt built from the Tyranno logo, with collectible character cards |
 | `.05` | **Symbiosis Circle** | Video, audio, and text documentation related to the project |
 | `.06` | **Master the skills** | A human ↔ Tyranno decryption/translation interface |
 
@@ -68,7 +68,6 @@ tyranno-wonderland/
 
 ## Visual Direction
 
-- **Palette:** Deep space black + bioluminescent cyan + amber-fossil gold
 - **Atmosphere:** Fog-clearing arrival into an unknown future realm; lunar / spaceship aesthetics transitioning into a lush symbiotic ecosystem
 - **Typography:** Angular, structural display typeface + Tyranno symbolic glyphs (bone-derived SVG paths)
 - **Motion:** Particle systems, floating glyphs, gesture-driven card interactions, 3D environments
